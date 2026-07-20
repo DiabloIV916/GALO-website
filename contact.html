@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — GALO</title>
+<meta name="description" content="Get in touch with GALO about programs or volunteering.">
+<link rel="icon" href="images/GALO_transparent.png" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <img src="images/GALO_landscape_trans.png" alt="GALO">
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="btn btn-primary">Donate</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h1>Let's connect and grow together</h1>
+  </div>
+</div>
+
+<section>
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">Send a message</span>
+      <h2>We'll get back to you within a few days</h2>
+      <form class="form-grid" data-static-form action="https://formspree.io/f/mwvgbeeg" method="POST">
+        <div class="field-row">
+          <div class="field">
+            <label for="c-name">Full name</label>
+            <input type="text" id="c-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-topic">What's this about?</label>
+          <select id="c-topic" name="topic">
+            <option>Program registration</option>
+            <option>Volunteering</option>
+            <option>Donations &amp; sponsorship</option>
+            <option>School or community partnership</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-message">Message</label>
+          <textarea id="c-message" name="message" rows="5" required></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </div>
+        <!-- <p class="form-note">This form needs a backend to actually deliver submissions — see the README for a 5-minute Formspree setup.</p> -->
+      </form>
+    </div>
+
+    <div>
+      <span class="eyebrow">Reach us directly</span>
+      <h2>Email/Mail us</h2>
+      <div class="card" style="margin-bottom: 20px;">
+        <h3>Email</h3>
+        <p><a href="mailto:galo.ontario@gmail.com">galo.ontario@gmail.com</a><br></p>
+      </div>
+      <div class="card" style="margin-bottom: 20px;">
+        <h3>Mail Address</h3>
+        <p>570 Hood Road Unit 14, #1585<br>Markham, ON L3R 4G7</p>
+      </div>
+      <!-- <div class="card">
+        <h3>Office hours</h3>
+        <p>Monday–Friday, 9am–5pm<br>Saturday mornings during active seasons</p>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GALO</div>
+        <p style="color: rgba(246,245,239,0.7); max-width: 32ch;">Learn, Lead, Thrive.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>570 Hood Road Unit 14, #1585<br>Markham, ON L3R 4G7</li>
+          <li><a href="mailto:galo.ontario@gmail.com">galo.ontario@gmail.com</a></li>
+          <!-- <li>(555) 010-2020</li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Growth and Active Learning of Ontario. A registered nonprofit.</span>
+      <span>Built with care for our community.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
