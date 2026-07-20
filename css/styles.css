@@ -402,6 +402,7 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
     animation:
         fade 24s infinite ease-in-out,
         zoom 24s infinite linear;
+    animation-fill-mode: backwards;
 }
 
 @keyframes zoom {
