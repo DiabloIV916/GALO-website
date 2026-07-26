@@ -226,6 +226,7 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .logo img {
@@ -233,9 +234,18 @@ p { margin: 0 0 1em; color: var(--ink-soft); }
   width: auto;
   margin-top: -20px;
   margin-bottom: -20px;
+  flex-shrink: 0;
 }
 
 .logo .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--clay); display: inline-block; }
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 70px;
+    margin-top: -12px;
+    margin-bottom: -12px;
+  }
+}
 
 .nav-links {
   display: flex;
