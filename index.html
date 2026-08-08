@@ -36,6 +36,7 @@
         <li><a href="programs.html">Programs</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="donate.html" class="btn btn-primary">Donate</a></li>
       </ul>
@@ -45,9 +46,17 @@
 </header>
 
 <section class="hero">
-  <div class="hero-lanes" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <img src="images/blackboard.jpg" alt="" class="slide slide-1">
+    <img src="images/drawing.JPG" alt="" class="slide slide-2">
+    <img src="images/basketball.JPG" alt="" class="slide slide-3">
+    <img src="images/bike.jpg" alt="" class="slide slide-4">
+    <img src="images/treetop.jpg" alt="" class="slide slide-5">
+    <img src="images/volunteer.jpg" alt="" class="slide slide-6">
+    <div class="hero-bg-overlay"></div>
+  </div>
   <div class="wrap">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow">Move to Grow, Connnect to Inspire</span>
       <h1>Where play, learning, and leadership come together</h1>
       <p class="lede">GALO empowers children and youth through sports, academic support, and mentorship, helping them build confidence, resilience, teamwork, and the skills they need to succeed in school and in life.</p>
@@ -56,66 +65,46 @@
         <a href="donate.html" class="btn btn-secondary btn-on-dark">Support us</a>
       </div>
     </div>
-    <div>
-      <div class="hero-frame">
-        <div class="hero-slideshow">
-          <img src="images/blackboard.jpg" alt="Blackboard drawing" class="slide slide-1">
-          <img src="images/drawing.JPG" alt="Drawing class - Maple Leaf" class="slide slide-2">
-          <img src="images/basketball.JPG" alt="Basketball practice" class="slide slide-3">
-          <img src="images/bike.jpg" alt="Let's biking!" class="slide slide-4">
-          <img src="images/treetop.jpg" alt="Tree top walk" class="slide slide-5">
-          <img src="images/volunteer.jpg" alt="Our volunteer in action" class="slide slide-6">
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- <div class="lane-divider">
+<section class="accordion-section">
   <div class="wrap">
-    <span class="lane-badge">L1</span>
-    <span class="lane-label">Our impact this year</span>
-    <hr>
-  </div>
-</div>
-
-<section>
-  <div class="wrap">
-    <div class="scoreboard" data-animate-stats>
-      <div class="stat"><span class="num" data-count="480" data-suffix="+">0</span><span class="label">Participants coached</span></div>
-      <div class="stat"><span class="num" data-count="14">0</span><span class="label">Weekly programs</span></div>
-      <div class="stat"><span class="num" data-count="9">0</span><span class="label">Years running</span></div>
-      <div class="stat"><span class="num" data-count="3">0</span><span class="label">Community fields &amp; gyms</span></div>
-    </div>
-  </div>
-</section> -->
-
-<section>
-  <div class="wrap two-col">
-    <div>
-      <span class="eyebrow">About us</span>
-      <h2>We believe every child deserves the opportunity to be active, learn, grow, and feel like they belong..</h2>
-      <p>GALO, which stands for Growth and Active Living Organization of Ontario, reflects its mission of empowering children and youth across Ontario through movement, mentorship, and personal growth.</p>
-      <p>The organization promotes both mental and physical well-being by offering sports, recreational activities, and active living programs designed for children and youth of all abilities. Guided by the belief that every child deserves the opportunity to thrive, regardless of age or ability, GALO is committed to creating inclusive experiences that help young people build confidence, develop healthy habits, and reach their full potential.</p>
-      <a href="about.html" class="card-link">Learn more about our organization</a>
-    </div>
-    <div class="quotes">
-      <div class="quote-block">
-        <div class="quote">
-          "If you trust play, you will not have to control your child's development as much. Play will raise the child in ways you can never imagine."
-        </div>
-        <span class="quote-attr">
-          — Vince Gowmon
-        </span>
+    <button type="button" class="accordion-toggle" aria-expanded="false">
+      <div class="accordion-heading">
+        <span class="eyebrow">About us</span>
+        <h2>We believe every child deserves the opportunity to be active, learn, grow, and feel like they belong..</h2>
       </div>
-
-      <div class="quote-block">
-        <div class="quote">
-          "Children learn as they play. Most importantly, in play children learn how to learn."
+      <span class="accordion-chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
+    <div class="accordion-panel">
+      <div class="two-col">
+        <div>
+          <p>GALO, which stands for Growth and Active Living Organization of Ontario, reflects its mission of empowering children and youth across Ontario through movement, mentorship, and personal growth.</p>
+          <p>The organization promotes both mental and physical well-being by offering sports, recreational activities, and active living programs designed for children and youth of all abilities. Guided by the belief that every child deserves the opportunity to thrive, regardless of age or ability, GALO is committed to creating inclusive experiences that help young people build confidence, develop healthy habits, and reach their full potential.</p>
+          <a href="about.html" class="card-link">Learn more about our organization</a>
         </div>
-        <span class="quote-attr">
-          — O. Fred Donaldson
-        </span>
+        <div class="quotes">
+          <div class="quote-block">
+            <div class="quote">
+              "If you trust play, you will not have to control your child's development as much. Play will raise the child in ways you can never imagine."
+            </div>
+            <span class="quote-attr">
+              — Vince Gowmon
+            </span>
+          </div>
+
+          <div class="quote-block">
+            <div class="quote">
+              "Children learn as they play. Most importantly, in play children learn how to learn."
+            </div>
+            <span class="quote-attr">
+              — O. Fred Donaldson
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -129,51 +118,64 @@
   </div>
 </div> -->
 
-<section class="section-turf">
+<section class="accordion-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">OUR PROGRAM</span>
-      <h2>OUR CORE PROGRAM BRANCHES</h2>
+    <button type="button" class="accordion-toggle" aria-expanded="false">
+      <div class="accordion-heading">
+        <span class="eyebrow">OUR PROGRAM</span>
+        <h2>OUR CORE PROGRAM BRANCHES</h2>
+      </div>
+      <span class="accordion-chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
+    <div class="accordion-panel">
       <p>GALO offers youth sports and academic development programs across our community. We provide premium, non-competitive multi-sport training and homework help where every child belongs.</p>
-    </div>
-    <div class="grid grid-3">
-      <div class="card" data-reveal>
-        <span class="tag">Ages 6–12</span>
-        <h3>Children Program</h3>
-        <p>Multi-sport where kids built around teamwork and following through on commitments.</p>
-        <a href="programs.html" class="card-link">Learn more</a>
-      </div>
-      <div class="card" data-reveal>
-        <span class="tag">Ages 13–18</span>
-        <h3>Youth Program</h3>
-        <p>Older youth train younger participants and referee games, building leadership skills on top of athletic ones.</p>
-        <a href="programs.html" class="card-link">Learn more</a>
-      </div>
-      <div class="card" data-reveal>
-        <span class="tag">Family Fun</span>
-        <h3>Drop-In Events</h3>
-        <p>Enjoy fun-filled drop-in events where families can play, connect, and create lasting memories together.</p>
-        <a href="programs.html" class="card-link">Learn more</a>
+      <div class="grid grid-3">
+        <div class="card" data-reveal>
+          <span class="tag">Ages 6–12</span>
+          <h3>Children Program</h3>
+          <p>Multi-sport where kids built around teamwork and following through on commitments.</p>
+          <a href="programs.html" class="card-link">Learn more</a>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Ages 13–18</span>
+          <h3>Youth Program</h3>
+          <p>Older youth train younger participants and referee games, building leadership skills on top of athletic ones.</p>
+          <a href="programs.html" class="card-link">Learn more</a>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Family Fun</span>
+          <h3>Drop-In Events</h3>
+          <p>Enjoy fun-filled drop-in events where families can play, connect, and create lasting memories together.</p>
+          <a href="programs.html" class="card-link">Learn more</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="lane-divider">
+<!-- <div class="lane-divider">
   <div class="wrap">
     <span class="lane-badge">?</span>
     <span class="lane-label">Not sure where to start</span>
     <hr>
   </div>
-</div>
+</div> -->
 
-<section>
+<section class="accordion-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Find your fit</span>
-      <h2>Who are you signing up?</h2>
-      <p>Tap an option and we'll point you to the right program in one click.</p>
-    </div>
+    <button type="button" class="accordion-toggle" aria-expanded="false">
+      <div class="accordion-heading">
+        <span class="eyebrow">Find your fit</span>
+        <h2>Who are you signing up?</h2>
+      </div>
+      <span class="accordion-chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
+    <div class="accordion-panel">
+    <p>Tap an option and we'll point you to the right program in one click.</p>
 
     <div class="finder" data-finder>
       <div class="finder-buttons">
@@ -212,46 +214,54 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
-<div class="lane-divider">
+<!-- <div class="lane-divider">
   <div class="wrap">
     <span class="lane-badge">!</span>
     <span class="lane-label">Get involved</span>
     <hr>
   </div>
-</div>
+</div> -->
 
-<section>
+<section class="accordion-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">How to join</span>
-      <h2>Three ways to be invovled</h2>
-    </div>
-    <div class="steps">
-      <div class="step" data-reveal>
-        <span class="step-num">01</span>
-        <div>
-          <h3>Join a program</h3>
-          <p>Sign your child up for a program, or grab a spot in the drop-in events.</p>
-        </div>
+    <button type="button" class="accordion-toggle" aria-expanded="false">
+      <div class="accordion-heading">
+        <span class="eyebrow">How to join</span>
+        <h2>Three ways to be invovled</h2>
       </div>
-      <div class="step" data-reveal>
-        <span class="step-num">02</span>
-        <div>
-          <h3>Volunteer your time</h3>
-          <p>Sports programs, community events, coaching and mentoring, and many more!</p>
+      <span class="accordion-chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
+    <div class="accordion-panel">
+      <div class="steps">
+        <div class="step" data-reveal>
+          <span class="step-num">01</span>
+          <div>
+            <h3>Join a program</h3>
+            <p>Sign your child up for a program, or grab a spot in the drop-in events.</p>
+          </div>
         </div>
-      </div>
-      <div class="step" data-reveal>
-        <span class="step-num">03</span>
-        <div>
-          <h3>Support with a gift</h3>
-          <p>We welcome donations!</p>
-          <p class="donation-note">
-            *Your contribution directly funds our youth initiatives. As a non-profit organization, we cannot issue tax receipts for donations. However, your support is invaluable in helping us continue our mission of empowering children and youth through sports and active learning.
-          </p>
+        <div class="step" data-reveal>
+          <span class="step-num">02</span>
+          <div>
+            <h3>Volunteer your time</h3>
+            <p>Sports programs, community events, coaching and mentoring, and many more!</p>
+          </div>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-num">03</span>
+          <div>
+            <h3>Support with a gift</h3>
+            <p>We welcome donations!</p>
+            <p class="donation-note">
+              *Your contribution directly funds our youth initiatives. As a non-profit organization, we cannot issue tax receipts for donations. However, your support is invaluable in helping us continue our mission of empowering children and youth through sports and active learning.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -280,6 +290,7 @@
           <li><a href="programs.html">Programs</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="volunteer.html">Volunteer</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
         </ul>
       </div>
       <div>

@@ -916,6 +916,209 @@ section { padding: clamp(20px, 4vw, 50px) 0; }
   section:not([class])::before { animation: none !important; }
 }
 
+/* Accordion / expandable sections -------------------------------------------*/
+.accordion-toggle {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.accordion-toggle:focus-visible {
+  outline: 2px solid var(--turf);
+  outline-offset: 6px;
+  border-radius: var(--radius);
+}
+.accordion-toggle .accordion-heading { flex: 1; min-width: 0; }
+.accordion-toggle .eyebrow, .accordion-toggle h2 { margin-bottom: 0; }
+.accordion-chevron {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.15s ease, color 0.15s ease;
+}
+.accordion-chevron svg { width: 16px; height: 16px; }
+.accordion-section.open .accordion-chevron { transform: rotate(180deg); }
+.accordion-toggle:hover .accordion-chevron { background: var(--forest); color: var(--chalk); border-color: var(--forest); }
+.section-turf .accordion-toggle:hover .accordion-chevron,
+.section-navy .accordion-toggle:hover .accordion-chevron { background: var(--optic); color: var(--forest-deep); border-color: var(--optic); }
+
+.accordion-panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+  margin-top: 0;
+}
+.accordion-section.open .accordion-panel {
+  opacity: 1;
+  margin-top: 34px;
+}
+.accordion-section:not(.open) .accordion-panel * { visibility: hidden; }
+.accordion-section.open .accordion-panel * { visibility: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-panel { transition: none !important; }
+  .accordion-chevron { transition: none !important; }
+}
+
+/* Hero — full-bleed background slideshow -------------------------------------*/
+.hero { display: flex; align-items: center; min-height: 620px; }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-bg .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(11,36,27,.92) 0%, rgba(11,36,27,.72) 38%, rgba(11,36,27,.35) 68%, rgba(11,36,27,.15) 100%),
+    linear-gradient(180deg, rgba(11,36,27,.35) 0%, transparent 30%, transparent 70%, rgba(11,36,27,.55) 100%);
+}
+.hero .wrap {
+  grid-template-columns: 1fr;
+  padding-top: clamp(60px, 10vw, 120px);
+  padding-bottom: clamp(60px, 10vw, 120px);
+}
+.hero-copy { max-width: 62ch; }
+
+@media (max-width: 720px) {
+  .hero-bg-overlay {
+    background:
+      linear-gradient(180deg, rgba(11,36,27,.55) 0%, rgba(11,36,27,.72) 55%, rgba(11,36,27,.92) 100%);
+  }
+}
+
+/* Gallery page ----------------------------------------------------------------*/
+.gallery-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--forest-deep);
+  box-shadow: 0 20px 50px rgba(11,36,27,.25);
+}
+.gallery-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.gallery-stage img.active { opacity: 1; }
+.gallery-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 2;
+  pointer-events: none;
+}
+.gallery-arrow {
+  pointer-events: auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(243,247,240,0.9);
+  color: var(--forest);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.gallery-arrow:hover { background: var(--chalk); transform: scale(1.08); }
+.gallery-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 18px 22px;
+  background: linear-gradient(0deg, rgba(11,36,27,.85), transparent);
+  color: var(--chalk);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.gallery-counter {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--chalk);
+  background: rgba(11,36,27,.55);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.gallery-play {
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  background: rgba(11,36,27,.55);
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.gallery-play:hover { background: rgba(11,36,27,.8); }
+.gallery-thumbs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin-top: 20px;
+  padding-bottom: 6px;
+}
+.gallery-thumb {
+  flex: 0 0 auto;
+  width: 92px;
+  height: 66px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-thumb:hover { opacity: 0.9; }
+.gallery-thumb.active { opacity: 1; border-color: var(--turf); }
+
 /* Responsive -----------------------------------------------------------------*/
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: 1fr; }
@@ -938,4 +1141,9 @@ section { padding: clamp(20px, 4vw, 50px) 0; }
   .field-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .hero { min-height: 480px; }
+  .accordion-toggle { align-items: flex-start; }
+  .accordion-chevron { width: 30px; height: 30px; }
+  .gallery-arrow { width: 38px; height: 38px; }
+  .gallery-thumb { width: 72px; height: 52px; }
 }

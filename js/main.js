@@ -87,6 +87,98 @@ document.addEventListener("DOMContentLoaded", function () {
     revealEls.forEach(function (el) { el.classList.add("in-view"); });
   }
 
+  // Expandable sections (accordion) — every section except the first on a page
+  document.querySelectorAll(".accordion-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var section = btn.closest(".accordion-section");
+      var panel = section.querySelector(".accordion-panel");
+      if (!section || !panel) return;
+      var isOpen = section.classList.contains("open");
+
+      if (isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        requestAnimationFrame(function () {
+          section.classList.remove("open");
+          panel.style.maxHeight = "0px";
+        });
+        btn.setAttribute("aria-expanded", "false");
+      } else {
+        section.classList.add("open");
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        btn.setAttribute("aria-expanded", "true");
+        panel.addEventListener("transitionend", function handler(e) {
+          if (e.propertyName !== "max-height") return;
+          if (section.classList.contains("open")) panel.style.maxHeight = "none";
+          panel.removeEventListener("transitionend", handler);
+        });
+      }
+    });
+  });
+
+  // Keep open accordion panels correctly sized if the window resizes
+  window.addEventListener("resize", function () {
+    document.querySelectorAll(".accordion-section.open .accordion-panel").forEach(function (panel) {
+      panel.style.maxHeight = "none";
+    });
+  });
+
+  // Gallery slideshow
+  var stage = document.querySelector("[data-gallery-stage]");
+  if (stage) {
+    var slides = Array.prototype.slice.call(stage.querySelectorAll(".gallery-stage img"));
+    var caption = document.querySelector("[data-gallery-caption]");
+    var counter = document.querySelector("[data-gallery-counter]");
+    var thumbs = Array.prototype.slice.call(document.querySelectorAll(".gallery-thumb"));
+    var playBtn = document.querySelector("[data-gallery-play]");
+    var prevBtn = document.querySelector("[data-gallery-prev]");
+    var nextBtn = document.querySelector("[data-gallery-next]");
+    var index = 0;
+    var playing = true;
+    var timer = null;
+    var DURATION = 4200;
+
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach(function (s, si) { s.classList.toggle("active", si === index); });
+      thumbs.forEach(function (t, ti) { t.classList.toggle("active", ti === index); });
+      if (caption) caption.textContent = slides[index].getAttribute("data-caption") || slides[index].alt || "";
+      if (counter) counter.textContent = (index + 1) + " / " + slides.length;
+    }
+
+    function next() { show(index + 1); }
+    function prev() { show(index - 1); }
+
+    function startAutoplay() {
+      stopAutoplay();
+      timer = setInterval(next, DURATION);
+    }
+    function stopAutoplay() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); if (playing) startAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); if (playing) startAutoplay(); });
+    thumbs.forEach(function (t, ti) {
+      t.addEventListener("click", function () { show(ti); if (playing) startAutoplay(); });
+    });
+    if (playBtn) {
+      playBtn.addEventListener("click", function () {
+        playing = !playing;
+        playBtn.textContent = playing ? "Pause" : "Play";
+        if (playing) startAutoplay(); else stopAutoplay();
+      });
+    }
+    document.addEventListener("keydown", function (e) {
+      if (!stage.closest("body")) return;
+      if (e.key === "ArrowRight") { next(); if (playing) startAutoplay(); }
+      if (e.key === "ArrowLeft") { prev(); if (playing) startAutoplay(); }
+    });
+
+    show(0);
+    if (playing) startAutoplay();
+  }
+
   // "Find your program" interactive selector
   var finder = document.querySelector("[data-finder]");
   if (finder) {
