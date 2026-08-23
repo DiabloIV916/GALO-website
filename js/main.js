@@ -12,6 +12,52 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Rotating picture carousel (programs page, etc.)
+  document.querySelectorAll("[data-carousel]").forEach(function (carousel) {
+    var stage = carousel.querySelector(".carousel-stage");
+    var slides = Array.prototype.slice.call(stage.querySelectorAll(".carousel-img"));
+    if (slides.length < 2) return; // nothing to rotate with just one picture
+
+    var dotsWrap = carousel.querySelector("[data-carousel-dots]");
+    var cta = carousel.querySelector("[data-carousel-cta]");
+    var interval = parseInt(carousel.getAttribute("data-interval"), 10) || 7000;
+    var index = Math.max(0, slides.findIndex(function (s) { return s.classList.contains("active"); }));
+    var timer = null;
+
+    var dots = slides.map(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "carousel-dot" + (i === index ? " active" : "");
+      b.setAttribute("aria-label", "Show picture " + (i + 1));
+      b.addEventListener("click", function () { show(i); restart(); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function show(i) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach(function (s, si) { s.classList.toggle("active", si === index); });
+      dots.forEach(function (d, di) { d.classList.toggle("active", di === index); });
+      if (cta) {
+        var href = slides[index].getAttribute("data-href");
+        if (href) cta.setAttribute("href", href);
+      }
+    }
+
+    function next() { show(index + 1); }
+    function start() {stop(); timer = setInterval(next, interval);}
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+    function restart() { stop(); start(); }
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+
+    show(index);
+    start();
+  });
+
   // Mark active nav link based on current page
   var current = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a[href]").forEach(function (a) {
