@@ -225,6 +225,42 @@ document.addEventListener("DOMContentLoaded", function () {
     if (playing) startAutoplay();
   }
 
+  // Gallery page — YouTube video grid (click thumbnail to load inline embed)
+  document.querySelectorAll("[data-video-grid] .video-card").forEach(function (card) {
+    var btn = card.querySelector("[data-video-play]");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var videoId = card.getAttribute("data-video-id");
+      if (!videoId) return;
+      var embed = document.createElement("div");
+      embed.className = "video-embed";
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+      iframe.title = "YouTube video player";
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      iframe.setAttribute("allowfullscreen", "");
+      embed.appendChild(iframe);
+      btn.replaceWith(embed);
+    });
+  });
+
+  // Footer — WeChat icon toggles the QR code popover
+  var wechatToggle = document.querySelector("[data-wechat-toggle]");
+  var wechatPopover = document.querySelector("[data-wechat-popover]");
+  if (wechatToggle && wechatPopover) {
+    wechatToggle.addEventListener("click", function () {
+      var isHidden = wechatPopover.hasAttribute("hidden");
+      if (isHidden) {
+        wechatPopover.removeAttribute("hidden");
+        wechatToggle.setAttribute("aria-expanded", "true");
+      } else {
+        wechatPopover.setAttribute("hidden", "");
+        wechatToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   // "Find your program" interactive selector
   var finder = document.querySelector("[data-finder]");
   if (finder) {
