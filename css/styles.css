@@ -911,12 +911,13 @@ section { padding: clamp(20px, 4vw, 20px) 0; }
 }
 .footer-social-icon:hover { background: var(--turf); border-color: var(--turf); transform: translateY(-2px); }
 .footer-social-icon img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   display: block;
-  /* Renders downloaded icons as solid chalk-white so they match the mono footer style.
-     Remove this filter line if you'd rather keep the icon's original colors. */
+  /* instagram.png / discord.png have real transparent backgrounds, so this
+     filter turns their colored logos into a clean white silhouette that
+     matches the WeChat icon and the rest of the footer's mono style. */
   filter: brightness(0) invert(1);
 }
 .footer-social-icon svg {
