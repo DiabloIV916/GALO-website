@@ -155,8 +155,9 @@ body::after{
 /* Upcoming activities grid ---------------------------------------------------------*/
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  align-items: start;              /* each tile keeps its own height */
 }
 
 .activity-card {
@@ -166,26 +167,23 @@ body::after{
   border: 2px solid var(--line);
   border-radius: var(--radius);
   text-decoration: none;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-  aspect-ratio: 4 / 3;
-}
-
-.activity-card:hover {
-  border-color: var(--turf);
-  transform: translateY(-3px);
+  transform-origin: center center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.15s ease;
 }
 
 .activity-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 380px;               /* keeps small tiles from getting too tall */
+  object-fit: contain;             /* whole picture, never cropped */
+  background: var(--chalk);
   display: block;
-  transition: transform 0.4s ease;
 }
 
-.activity-card:hover img {
-  transform: scale(1.06);
-}
+/* Left column grows rightward, right column grows leftward,
+   so the enlarged tile stays on screen */
+.activity-card:nth-child(3n + 1) { transform-origin: left center; }
+.activity-card:nth-child(3n)     { transform-origin: right center; }
 
 /* Date badge — same look as .event-table .date-badge, positioned as an overlay */
 .activity-card .activity-date {
@@ -223,17 +221,57 @@ body::after{
 }
 
 .activity-footer {
-  margin-top: 28px;
+  margin-top: 60px;                /* extra room so enlarged tiles don't cover the link */
   text-align: center;
 }
 
-/* On wider screens, cap the whole grid's width so tiles don't get
-   comically large on desktop while still keeping 2 columns. */
+/* ---------- Desktop / laptop (screens 720px and wider) ---------- */
 @media (min-width: 720px) {
   .activity-grid {
-    max-width: 720px;
+    max-width: 900px;              /* size dial: ~285px per tile. 760 = smaller, 1100 = larger */
     margin: 0 auto;
     gap: 22px;
+  }
+}
+
+/* ---------- Hover enlarge (mouse / trackpad only) ---------- */
+@media (hover: hover) {
+  .activity-card:hover,
+  .activity-card:focus-visible {
+    transform: scale(2.2);         /* enlarge dial: 1.8 = moderate, 2.6 = very large */
+    z-index: 20;                   /* sits above neighboring tiles */
+    border-color: var(--turf);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .activity-card:hover img,
+  .activity-card:focus-visible img {
+    max-height: none;              /* show the full poster when enlarged */
+  }
+}
+
+/* ---------- Touch devices (phones and tablets, no hover) ---------- */
+@media (hover: none) {
+  .activity-card img {
+    max-height: none;              /* posters use the full tile width */
+  }
+}
+
+/* Touch tablets: 2 columns so posters are readable */
+@media (hover: none) and (min-width: 720px) and (max-width: 1023px) {
+  .activity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Phones (under 720px): 1 column ---------- */
+@media (max-width: 719px) {
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-card img {
+    max-height: none;
   }
 }
 
